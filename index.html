@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <meta name="theme-color" content="#0b3523" />
+  <title>Mahjong Solitaire</title>
+  <link rel="stylesheet" href="./src/style.css" />
+</head>
+<body>
+  <div id="app">
+    <!-- Top HUD Bar -->
+    <header class="hud-header">
+      <div class="hud-left">
+        <h1 class="logo">🀄 <span class="logo-text">Mahjong</span></h1>
+        <select id="select-layout" class="hud-select" aria-label="Select layout">
+          <option value="turtle">Classic Turtle (144)</option>
+          <option value="fortress">Fortress (64)</option>
+          <option value="mini">Quick Mini (36)</option>
+        </select>
+      </div>
+
+      <div class="hud-stats">
+        <div class="stat-item" title="Remaining Tiles">
+          <span class="stat-label">Tiles:</span>
+          <span id="stat-remaining" class="stat-value">144</span>
+        </div>
+        <div class="stat-item" title="Available Matching Pairs">
+          <span class="stat-label">Moves:</span>
+          <span id="stat-moves" class="stat-value">0</span>
+        </div>
+        <div class="stat-item hint-counter-item" title="Number of hints used in this game">
+          <span class="stat-label">💡 Hints:</span>
+          <span id="stat-hints" class="stat-value hint-pill">0</span>
+        </div>
+        <div class="stat-item" title="Elapsed Time">
+          <span class="stat-label">⏱️</span>
+          <span id="stat-time" class="stat-value">00:00</span>
+        </div>
+        <div class="stat-item stat-score-item" title="Current Score">
+          <span class="stat-label">Score:</span>
+          <span id="stat-score" class="stat-value">0</span>
+        </div>
+      </div>
+
+      <div class="hud-right">
+        <button id="btn-view" class="hud-view-btn" title="Toggle 3D Angled / 2D Top-Down View (V)" aria-label="Toggle View Mode">
+          <span id="view-icon">📐</span>
+          <span id="view-text">3D</span>
+        </button>
+        <button id="btn-sound" class="icon-btn" title="Toggle Sound" aria-label="Toggle Sound">
+          <span id="sound-icon">🔊</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Canvas Game Board Viewport -->
+    <main class="canvas-container">
+      <canvas id="game-canvas"></canvas>
+      
+      <!-- In-canvas Notification / Alert toast -->
+      <div id="toast" class="toast hidden"></div>
+    </main>
+
+    <!-- Bottom Action Toolbar (Mobile Ergonomic & Desktop Accessible) -->
+    <footer class="action-toolbar">
+      <button id="btn-hint" class="action-btn btn-hint" title="Show Hint (H)">
+        <span class="btn-icon">💡</span>
+        <span class="btn-text">Hint</span>
+        <span id="btn-hint-badge" class="btn-badge">0</span>
+      </button>
+
+      <button id="btn-undo" class="action-btn" title="Undo Move (U)">
+        <span class="btn-icon">↩</span>
+        <span class="btn-text">Undo</span>
+      </button>
+
+      <button id="btn-shuffle" class="action-btn" title="Shuffle Tiles (S)">
+        <span class="btn-icon">🔀</span>
+        <span class="btn-text">Shuffle</span>
+      </button>
+
+      <button id="btn-fit" class="action-btn" title="Fit Board to Screen (F)">
+        <span class="btn-icon">🔍</span>
+        <span class="btn-text">Fit</span>
+      </button>
+
+      <!-- Testing Framework Auto-Play Controls -->
+      <div class="autoplay-group">
+        <button id="btn-autoplay" class="action-btn btn-autoplay" title="Auto Playthrough Bot">
+          <span class="btn-icon">🤖</span>
+          <span id="autoplay-text" class="btn-text">Auto Play</span>
+        </button>
+        <button id="btn-step" class="action-btn btn-step" title="Step 1 Move">
+          <span class="btn-icon">⏭️</span>
+        </button>
+      </div>
+
+      <button id="btn-new" class="action-btn btn-primary" title="New Game (N)">
+        <span class="btn-icon">➕</span>
+        <span class="btn-text">New</span>
+      </button>
+    </footer>
+
+    <!-- Victory Modal -->
+    <div id="modal-win" class="modal-overlay hidden">
+      <div class="modal-card">
+        <div class="win-crown">👑</div>
+        <h2>Congratulations!</h2>
+        <p class="win-subtitle">You cleared the board!</p>
+        
+        <div class="win-metrics">
+          <div class="win-metric-row">
+            <span>⏱️ Time:</span>
+            <strong id="win-time">00:00</strong>
+          </div>
+          <div class="win-metric-row">
+            <span>🏆 Final Score:</span>
+            <strong id="win-score">0</strong>
+          </div>
+          <div class="win-metric-row">
+            <span>💡 Hints Used:</span>
+            <strong id="win-hints">0</strong>
+          </div>
+          <div class="win-metric-row">
+            <span>🎯 Moves Made:</span>
+            <strong id="win-moves">0</strong>
+          </div>
+        </div>
+
+        <div class="modal-actions">
+          <button id="btn-play-again" class="btn-modal-primary">Play Again</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="./src/main.ts"></script>
+</body>
+</html>
