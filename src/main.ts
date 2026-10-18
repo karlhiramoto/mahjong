@@ -18,6 +18,7 @@ const selectLayout = document.getElementById('select-layout') as HTMLSelectEleme
 const btnView = document.getElementById('btn-view') as HTMLButtonElement;
 const viewIcon = document.getElementById('view-icon') as HTMLElement;
 const viewText = document.getElementById('view-text') as HTMLElement;
+const btnHelp = document.getElementById('btn-help') as HTMLButtonElement;
 const btnSound = document.getElementById('btn-sound') as HTMLButtonElement;
 const soundIcon = document.getElementById('sound-icon') as HTMLElement;
 
@@ -37,6 +38,10 @@ const winScore = document.getElementById('win-score') as HTMLElement;
 const winHints = document.getElementById('win-hints') as HTMLElement;
 const winMoves = document.getElementById('win-moves') as HTMLElement;
 const btnPlayAgain = document.getElementById('btn-play-again') as HTMLButtonElement;
+
+const modalHelp = document.getElementById('modal-help') as HTMLElement;
+const btnCloseHelp = document.getElementById('btn-close-help') as HTMLButtonElement;
+const btnGotIt = document.getElementById('btn-got-it') as HTMLButtonElement;
 
 // Core Game Objects
 const sound = new SoundEffects();
@@ -193,6 +198,32 @@ btnView.addEventListener('click', () => {
   autoFitBoard();
 });
 
+function openHelpModal(): void {
+  modalHelp.classList.remove('hidden');
+}
+
+function closeHelpModal(): void {
+  modalHelp.classList.add('hidden');
+}
+
+btnHelp.addEventListener('click', () => {
+  openHelpModal();
+});
+
+btnCloseHelp.addEventListener('click', () => {
+  closeHelpModal();
+});
+
+btnGotIt.addEventListener('click', () => {
+  closeHelpModal();
+});
+
+modalHelp.addEventListener('click', (e) => {
+  if (e.target === modalHelp) {
+    closeHelpModal();
+  }
+});
+
 btnSound.addEventListener('click', () => {
   const muted = sound.toggleMute();
   soundIcon.textContent = muted ? '🔇' : '🔊';
@@ -204,7 +235,17 @@ window.addEventListener('keydown', (e) => {
   // Ignore shortcuts if an input is focused
   if (e.target instanceof HTMLInputElement || e.target instanceof HTMLSelectElement) return;
 
+  if (e.key === 'Escape') {
+    closeHelpModal();
+    modalWin.classList.add('hidden');
+    return;
+  }
+
   switch (e.key.toLowerCase()) {
+    case '?':
+    case '/':
+      openHelpModal();
+      break;
     case 'h':
       btnHint.click();
       break;

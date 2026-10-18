@@ -48,6 +48,9 @@
           <span id="view-icon">📐</span>
           <span id="view-text">3D</span>
         </button>
+        <button id="btn-help" class="icon-btn" title="How to Play / Help (?)" aria-label="Help">
+          <span>❓</span>
+        </button>
         <button id="btn-sound" class="icon-btn" title="Toggle Sound" aria-label="Toggle Sound">
           <span id="sound-icon">🔊</span>
         </button>
@@ -130,6 +133,87 @@
 
         <div class="modal-actions">
           <button id="btn-play-again" class="btn-modal-primary">Play Again</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Help / Rules Modal -->
+    <div id="modal-help" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="help-title">
+      <div class="modal-card help-modal-card">
+        <div class="help-header">
+          <h2 id="help-title">🀄 How to Play Mahjong</h2>
+          <button id="btn-close-help" class="close-btn" aria-label="Close help">&times;</button>
+        </div>
+
+        <div class="help-content">
+          <!-- Section 1: Objective -->
+          <div class="help-section">
+            <h3>🎯 Objective</h3>
+            <p>Clear all <strong>144 tiles</strong> from the board by finding and matching identical pairs of <strong>Free</strong> tiles.</p>
+          </div>
+
+          <!-- Section 2: Free Tile Rule -->
+          <div class="help-section">
+            <h3>🔓 When is a Tile "Free"?</h3>
+            <p>You can only pick a tile if it satisfies <strong>both</strong> conditions:</p>
+            <ul>
+              <li><strong>No tile on top:</strong> No other tile is covering or overlapping it from a higher layer.</li>
+              <li><strong>Open side:</strong> At least one horizontal side (<strong>Left</strong> or <strong>Right</strong>) is completely clear with no adjacent tile on the same layer.</li>
+            </ul>
+            <div class="help-tip">
+              💡 <em>Tip: Blocked tiles are slightly dimmed and cannot be tapped until you uncover or unblock them.</em>
+            </div>
+          </div>
+
+          <!-- Section 3: Tile Types & Matching -->
+          <div class="help-section">
+            <h3>🀄 Matching Rules</h3>
+            <div class="rules-grid">
+              <div class="rule-box">
+                <h4>Numbered Suits (Exact Match)</h4>
+                <p>Dots ⚪, Bamboo 🎋, Characters 萬 (1–9). Must match the <strong>exact same number and suit</strong> (e.g. 5-Bamboo matches 5-Bamboo).</p>
+              </div>
+              <div class="rule-box">
+                <h4>Honors (Exact Match)</h4>
+                <p><strong>Winds</strong> (東, 南, 西, 北) and <strong>Dragons</strong> (中 Red, 發 Green, 🔲 White). Match the identical symbol.</p>
+              </div>
+              <div class="rule-box highlight-rule">
+                <h4>🌸 Seasons (Match Any)</h4>
+                <p>Spring, Summer, Autumn, Winter. <strong>Any Season matches any other Season!</strong></p>
+              </div>
+              <div class="rule-box highlight-rule">
+                <h4>🌺 Flowers (Match Any)</h4>
+                <p>Plum, Orchid, Chrysanthemum, Bamboo. <strong>Any Flower matches any other Flower!</strong></p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 4: Game Features -->
+          <div class="help-section">
+            <h3>🛠️ Game Features & Toolbar</h3>
+            <ul class="features-list">
+              <li><strong>💡 Hint (H):</strong> Highlights a recommended matching open pair and records your hints used.</li>
+              <li><strong>↩ Undo (U):</strong> Reverts your previous move.</li>
+              <li><strong>🔀 Shuffle (S):</strong> Rearranges remaining active tiles if no moves are left.</li>
+              <li><strong>📐 3D View (V):</strong> Toggles between the 3D angled elevation view and classic 2D top-down view.</li>
+              <li><strong>🔍 Fit (F):</strong> Centers and zooms the board to fit your display.</li>
+              <li><strong>🤖 Auto-Play:</strong> Watch the autonomous AI solver play through the game.</li>
+            </ul>
+          </div>
+
+          <!-- Section 5: Controls -->
+          <div class="help-section">
+            <h3>📱 Touch & Desktop Controls</h3>
+            <ul>
+              <li><strong>Tap / Click:</strong> Select a free tile, then tap its match to clear both.</li>
+              <li><strong>Pinch to Zoom:</strong> Use two fingers on mobile (or mouse wheel on desktop) to zoom in and out.</li>
+              <li><strong>Drag to Pan:</strong> Touch and drag (or click & drag) to move across the board when zoomed in.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="modal-actions">
+          <button id="btn-got-it" class="btn-modal-primary">Got it, Let's Play!</button>
         </div>
       </div>
     </div>
